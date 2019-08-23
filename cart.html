@@ -190,10 +190,10 @@
                 <p>Enter your coupon code if you have one.</p>
               </div>
               <div class="col-md-8 mb-3 mb-md-0">
-                <input type="text" class="form-control py-3" id="coupon" placeholder="Coupon Code">
+                <input type="text" class="form-control py-3" id="coupon-input" placeholder="Coupon Code">
               </div>
               <div class="col-md-4">
-                <button class="btn btn-primary btn-sm">Apply Coupon</button>
+                <button class="btn btn-primary btn-sm" id="coupon-btn">Apply Coupon</button>
               </div>
             </div>
           </div>
@@ -213,18 +213,26 @@
                     <strong class="text-black">$230.00</strong>
                   </div>
                 </div>
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <span class="text-black">Coupon</span>
+                  </div>
+                  <div class="col-md-6 text-right">
+                    <strong class="text-black" id="coupon-value">$0.0</strong>
+                  </div>
+                </div>
                 <div class="row mb-5">
                   <div class="col-md-6">
                     <span class="text-black">Total</span>
                   </div>
                   <div class="col-md-6 text-right">
-                    <strong class="text-black">$230.00</strong>
+                    <strong class="text-black" id="total-value">$230.00</strong>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-md-12">
-                    <button class="btn btn-primary btn-lg py-3 btn-block" onclick="window.location='checkout.html'">Proceed To Checkout</button>
+                    <button class="btn btn-primary btn-lg py-3 btn-block" id="checkout-btn">Proceed To Checkout</button>
                   </div>
                 </div>
               </div>
@@ -318,6 +326,25 @@
   <script src="js/aos.js"></script>
 
   <script src="js/main.js"></script>
-    
+  <script src="js/tracking.js"></script>
+
+  <script type="text/javascript">
+    $('#checkout-btn').click(function(e) {
+      window.location = '/checkout.html';
+
+      _dp("track", "checkout");
+    })
+
+    $('#coupon-btn').click(function(e) {
+      _dp("track", "used-coupon", { metadata: { coupon: $("#coupon-input").val() }});
+
+      $("#coupon-input").val("");
+      $("#coupon-value").text("$30.00");
+      $("#total-value").text("$200.00");
+
+      alert("Used coupon!");
+    })
+  </script>
+ 
   </body>
 </html>

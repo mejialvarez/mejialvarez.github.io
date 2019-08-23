@@ -334,7 +334,7 @@
             </div>
 
             <div class="block-7">
-              <form action="#" method="post">
+              <form action="#" method="post" id="subscription-form">
                 <label for="email_subscribe" class="footer-heading">Subscribe</label>
                 <div class="form-group">
                   <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Email">
@@ -367,6 +367,21 @@
   <script src="js/aos.js"></script>
 
   <script src="js/main.js"></script>
+  <script src="js/tracking.js"></script>
+
+  <script type="text/javascript">
+    $("#subscription-form").on('submit', function(e) {
+      e.preventDefault()
+      _dp("track", "subsribe-newsletter", {
+        person: {
+          email: $("#subscription-form #email_subscribe").val()
+        }
+      });
+
+      $('#subscription-form')[0].reset();
+      alert("Subscribed!")
+    });
+  </script>
     
   </body>
 </html>
