@@ -257,11 +257,7 @@
     $("#contact-form").on('submit', function(e) {
       e.preventDefault()
       _dp("track", "contact", {
-        contact: {
-          value: $("#contact-form #c_email").val(),
-          name: $("#contact-form #c_fullname").val(),
-          phone: $("#contact-form #c_phone").val()
-        }
+        contact: $("#contact-form #c_email").val()
       });
 
       $('#contact-form')[0].reset();
