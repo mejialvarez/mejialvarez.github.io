@@ -373,9 +373,7 @@
     $("#subscription-form").on('submit', function(e) {
       e.preventDefault()
       _dp("track", "subsribe-newsletter", {
-        contact: {
-          value: $("#subscription-form #email_subscribe").val()
-        }
+        contact: $("#subscription-form #email_subscribe").val()
       });
 
       $('#subscription-form')[0].reset();
